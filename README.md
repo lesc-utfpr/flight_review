@@ -6,7 +6,8 @@ ULog flight logs, and analyze them through the browser.
 It uses the [bokeh](http://bokeh.pydata.org) library for plotting and the
 [Tornado Web Server](http://www.tornadoweb.org).
 
-Flight Review is deployed at https://review.px4.io.
+Official Flight Review is deployed at https://review.px4.io.
+This will be running locally at 'localhost:5006'.
 
 ![Plot View](screenshots/plot_view.png)
 
@@ -51,7 +52,8 @@ brew install fftw
 git clone --recursive https://github.com/PX4/flight_review.git
 cd flight_review/app
 pip install -r requirements.txt
-# Note: preferably use a virtualenv
+# Note: preferably use a virtualenv 
+# Note 2: you must use a venv to get python 3.9 on ubuntu 20.
 
 # Note: if you get an error about "ModuleNotFoundError: No module named 'libevents_parse'" update submodules
 git submodule update --init --recursive
@@ -69,7 +71,7 @@ Initialize the Database as following:
 
 #### Settings
 
-- By default the app will load `config_default.ini` configuration file
+- By default the app will load `config_default.ini` configuration file. You must add your own file if you want to use the Mapbox API, or Cesium API, etc. This is for map generation, 3D view generation, etc.
 - You can override any setting from `config_default.ini` with a user config file
   `config_user.ini` (untracked)
 - Any setting on `config_user.ini` has priority over
@@ -90,6 +92,14 @@ To start the whole web application:
 cd app
 ./serve.py --show
 ```
+
+Also, if you're lazy to set up the commands every time you go in, there is a *'start.sh'* on the root folder. 
+
+It initializes the Python virtual environment (you must set it up beforehand) and then the web application. Only thing you'll need to change is the origin IP in the command. It varies from network to network. Easy way is to run 'ip a' and grab the IPV4 address from the Ethernet or WLAN interface....
+
+If you're an adventurer and want to run this on Windows, there are several issues with *firewall* that are easier to resolve in Ubuntu. A bit of research will get you there, though. 
+
+
 
 The `plot_app` directory contains a bokeh server application for plotting. It
 can be run stand-alone with `bokeh serve --show plot_app` (or with `cd plot_app;
@@ -150,7 +160,7 @@ It's useful to look at `print('\n'.join(sys.modules.keys()))` to check this.
 
 # Docker usage
 
-This section explains how to work with docker.
+This section explains how to work with docker. *Cadu didn't try this.
 
 ## Arguments
 
