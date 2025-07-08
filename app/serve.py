@@ -93,8 +93,8 @@ if args.allow_websocket_origin is not None:
     server_kwargs['allow_websocket_origin'] = args.allow_websocket_origin
 server_kwargs['websocket_max_message_size'] = 100 * 1024 * 1024
 
-# increase the maximum upload size (default is 100MB)
-server_kwargs['http_server_kwargs'] = {'max_buffer_size': 300 * 1024 * 1024}
+# increase the maximum upload size *even further* (default is 100MB)
+server_kwargs['http_server_kwargs'] = {'max_buffer_size': 1024 * 1024 * 1024}
 
 
 show_ulog_file = False
